@@ -1,7 +1,10 @@
-# Mermaid Diagram Example
-This repository constitutes a single README file to practice Mermaid.js diagram syntax.
+# 🧜‍♀️ Mermaid.js Sandbox
+![Ariel](https://images.genius.com/b246eacb8eb8a9a01a0ed79ed9273040.690x388x41.gif)
 
-### Sequence Diagram
+> This repository constitutes a single README file to practice Mermaid.js diagram syntax.
+
+
+### I. Sequence Diagram
 ---
 A ***simple sequence diagram*** of a Log-in use case.
 ```mermaid
@@ -40,7 +43,21 @@ sequenceDiagram
     end
 ```
 
-### Entity Relational Diagram
+### II. Process Flowchart of a Log-in Feature
+---
+``` mermaid
+flowchart TD
+
+    Start([Start]) --> A[Client enters credentials]
+    A --> B{Correct credentials?}
+    B --> |No| E[Invalid credentials]
+    E --> A
+    B --> |Yes| C[Client successfully logs in]
+    C --> D[Client logs into the system]
+    D --> F([End])
+```
+
+### III. Entity Relational Diagram
 ---
 An ***ERD*** of 3 entities (User, Course, and Enrollment)
 ```mermaid
@@ -80,7 +97,7 @@ erDiagram
 
 > A complex system would require more entities such as payment, quiz, category, module, progress, etc.
 
-### Back-end Directory Structure of a Simplified Udemy-based Web Application (Vertical Slice Architecture)
+### IV. Back-end Directory Structure of a Simplified Udemy-based Web Application (Vertical Slice Architecture)
 ---
 ```text
 # Directory Structure: Udemy-based Web Application (Blazor, .NET Core, Mediatr)
@@ -125,8 +142,10 @@ src/
 └── ../../udemy-app                 
 ```
 
-#### Side Project: General flowchart of the Modified Hippopotamus Optimization (MHO) Algorithm.
 
+
+#### i. Bonus Side Project: General flowchart of the Modified Hippopotamus Optimization (MHO) Algorithm.
+---
 MHO (Han et al., 2025) is a modified metaheuristic algorithm based on the  Hippopotamus Optimization (MHO) Algorithm (Amiri et. al, 2024), to be used for my thesis, where it is to be modified and used to solve land allocation and harvest scheduling, benchmarked against established methodology.
 
 ```mermaid
@@ -162,3 +181,4 @@ A([Start]) --> B[Input optimization problem]
     Y -->|No| AA[Output best solution]
     AA --> AB([End])
 ```
+> Lifted from https://www.nature.com/articles/s41598-024-54910-3
