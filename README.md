@@ -81,7 +81,7 @@ erDiagram
 > A complex system would require more entities such as payment, quiz, category, module, progress, etc.
 
 ### Back-end Directory Structure of a Simplified Udemy-based Web Application (Vertical Slice Architecture)
-
+---
 ```text
 # Directory Structure: Udemy-based Web Application (Blazor, .NET Core, Mediatr)
 
@@ -123,4 +123,14 @@ src/
 ├── appsettings.json
 ├── Program.cs
 └── ../../udemy-app                 
+```
+
+#### SIDE PROJECT: A simplified flowchart of the Foraging Territorial Hippopotamus Optimization (FTHO) Algorithm.
+
+FTHO is  a modified metaheuristic algorithm based on the Modified Hippopotamus Optimization (MHO) Algorithm (Han et. al, 2025), to be used for my thesis and solve land allocation and harvest scheduling and to be benchmarked against established methodology.
+
+```mermaid
+flowchart
+
+
 ```
