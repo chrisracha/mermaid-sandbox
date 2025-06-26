@@ -47,5 +47,32 @@ An ***ERD*** of 3 entities (User, Course, and Enrollment)
 erDiagram
     USER ||--o{ ENROLLMENT: "has"
     USER ||--o{ COURSE: "teaches"
-    COURSE || 
+    COURSE ||--o{ ENROLLMENT: "contains"
+
+    USER {
+        int user_id PK
+        string first_name
+        string last_name
+        string email UK
+        string password_hash
+        string role "student/instructor"
+        datetime created_at
+    }
+    
+    COURSE {
+        int course_id PK
+        int instructor_id FK
+        string title
+        text description
+        datetime created_at
+        datetime updated_at
+    }
+    
+    ENROLLMENT {
+        int enrollment_id PK
+        int student_id FK
+        int course_id FK
+        datetime enrolled_at
+        string status "active/completed/dropped"
+    }
 ```
