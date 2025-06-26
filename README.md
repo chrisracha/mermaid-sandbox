@@ -13,7 +13,7 @@ sequenceDiagram
     actor User
     participant UI as Login Page
     participant API as Controller
-    participant DB as Database
+    participant DB as Entity
     
     User->>UI: enterCredentials()
     activate User
