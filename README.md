@@ -125,12 +125,40 @@ src/
 └── ../../udemy-app                 
 ```
 
-#### SIDE PROJECT: A simplified flowchart of the Foraging Territorial Hippopotamus Optimization (FTHO) Algorithm.
+#### Side Project: General flowchart of the Modified Hippopotamus Optimization (MHO) Algorithm.
 
-FTHO is  a modified metaheuristic algorithm based on the Modified Hippopotamus Optimization (MHO) Algorithm (Han et. al, 2025), to be used for my thesis and solve land allocation and harvest scheduling and to be benchmarked against established methodology.
+MHO (Han et al., 2025) is a modified metaheuristic algorithm based on the  Hippopotamus Optimization (MHO) Algorithm (Amiri et. al, 2024), to be used for my thesis, where it is to be modified and used to solve land allocation and harvest scheduling, benchmarked against established methodology.
 
 ```mermaid
-flowchart
+flowchart TD
 
-
+A([Start]) --> B[Input optimization problem]
+    B --> C[Set N, T, t=1, i=1]
+    C --> D[Initialize population with sine chaotic map]
+    D --> E[Calculate objective function]
+    E --> F[Update dominant hippopotamus]
+    F --> G{i > N/2?}
+    G -->|No| H[Calculate Xi^Mhippo & Xi^FBhippo]
+    H --> I[Update Xi]
+    I --> K
+    G -->|Yes| L[Generate random predator position]
+    L --> M[Calculate Xi^HippoR]
+    M --> N[Update Xi]
+    N --> K
+    K[i = i+1] --> P{i <= N?}
+    P -->|Yes| G
+    P -->|No| Q[Set i=1]
+    Q --> R[Calculate new bounds]
+    R --> S[Calculate Xi^HippoE]
+    S --> T[Update Xi]
+    T --> U[i = i+1]
+    U --> V{i <= N?}
+    V -->|Yes| S
+    V -->|No| W[Apply small-hole reverse learning]
+    W --> X[Save best solution]
+    X --> Y{t < T?}
+    Y -->|Yes| Z[t = t+1, i=1]
+    Z --> E
+    Y -->|No| AA[Output best solution]
+    AA --> AB([End])
 ```
