@@ -47,54 +47,37 @@ sequenceDiagram
 ---
 ``` mermaid
 flowchart TD
-  Start([Start])
-  subgraph Frontend [Blazor Client]
-    A[LoginComponent: User enters username & password]
-    B[HttpClient POST /api/auth/login]
+  Start(("Start"))
+  
+  subgraph Frontend
+    A[Enter credentials]
+    B[Send login request]
+    G[Return token]
+    H[Store token & redirect]
+    Eerror[Return error]
   end
-
-  subgraph Backend [ASP.NET Core Web API]
-    C[AuthController.Login(LoginDto dto)]
-    D[AuthService.ValidateUser(dto)]
-    E[UserRepository.GetByUsername(dto.Username)]
-    F[EF Core: DbContext.Users.SingleOrDefault(...)]
-    G{user == null \nor password invalid?}
-    H[Return 401 Unauthorized]
-    K[TokenService.CreateToken(user)]
-    L[AuthController returns 200 OK + { token }]
+  
+  subgraph Backend
+    C[Receive login request]
+    D{Valid user & password?}
+    F[Create token]
   end
-
-  subgraph Database [SQL Server via EF Core]
-    M[(Users Table)]
+  
+  subgraph Database
+    E[Lookup user record]
   end
-
-  subgraph FrontendPost [Blazor Client cont.]
-    I[On success: Store JWT/token in local storage]
-    J[Navigate to protected page]
-    X[Display "Invalid credentials" message]
-  end
-
-  End([End])
-
+  
   Start --> A
   A --> B
-
   B --> C
-  C --> D
-  D --> E
-  E --> F
+  C --> E
+  E --> D
+  D -->|no| Eerror
+  Eerror --> A
+  D -->|yes| F
   F --> G
-
-  G -->|Yes| H
-  H --> X
-  X --> A
-
-  G -->|No| K
-  K --> L
-  L --> I
-  I --> J
-  J --> End
-  F --> M
+  G --> H
+  H --> End(("End"))
 ```
 
 ### III. Entity Relational Diagram
