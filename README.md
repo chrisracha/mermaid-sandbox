@@ -53,8 +53,7 @@ flowchart TD
     B --> |No| E[Invalid credentials]
     E --> A
     B --> |Yes| C[Client successfully logs in]
-    C --> D[Client logs into the system]
-    D --> F([End])
+    C --> F([End])
 ```
 
 ### III. Entity Relational Diagram
