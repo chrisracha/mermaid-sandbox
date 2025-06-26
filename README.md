@@ -174,34 +174,52 @@ MHO (Han et al., 2025) is a modified metaheuristic algorithm based on the  Hippo
 ```mermaid
 flowchart TD
 
-A([Start]) --> B[Input optimization problem]
-    B --> C[Set N, T, t=1, i=1]
-    C --> D[Initialize population with sine chaotic map]
-    D --> E[Calculate objective function]
-    E --> F[Update dominant hippopotamus]
-    F --> G{i > N/2?}
-    G -->|No| H[Calculate Xi^Mhippo & Xi^FBhippo]
-    H --> I[Update Xi]
-    I --> K
-    G -->|Yes| L[Generate random predator position]
-    L --> M[Calculate Xi^HippoR]
-    M --> N[Update Xi]
-    N --> K
-    K[i = i+1] --> P{i <= N?}
-    P -->|Yes| G
-    P -->|No| Q[Set i=1]
-    Q --> R[Calculate new bounds]
-    R --> S[Calculate Xi^HippoE]
-    S --> T[Update Xi]
-    T --> U[i = i+1]
-    U --> V{i <= N?}
-    V -->|Yes| S
-    V -->|No| W[Apply small-hole reverse learning]
-    W --> X[Save best solution]
-    X --> Y{t < T?}
-    Y -->|Yes| Z[t = t+1, i=1]
-    Z --> E
-    Y -->|No| AA[Output best solution]
-    AA --> AB([End])
+  A([Start]) --> B[Input optimization problem]
+  B --> C[Set N, T, t=1, i=1]
+  C --> D[Initialize population with sine chaotic map]
+  D --> E[Calculate objective function]
+  E --> F[Update dominant hippopotamus]
+  F --> G{i > N/2?}
+
+  subgraph Phase 1
+    H[Calculate Xi^Mhippo & Xi^FBhippo]
+    I[Update Xi]
+  end
+
+  subgraph Phase 2
+    L[Generate random predator position]
+    M[Calculate Xi^HippoR]
+    N[Update Xi]
+  end
+
+  subgraph Phase 3
+    R[Calculate new bounds]
+    S[Calculate Xi^HippoE]
+    T[Update Xi]
+  end
+
+  G -->|No| H
+  H --> I
+  I --> K
+  G -->|Yes| L
+  L --> M
+  M --> N
+  N --> K
+
+  K[i = i+1] --> P{i <= N?}
+  P -->|Yes| G
+  P -->|No| Q[Set i=1]
+
+  Q --> R
+  T --> U[i = i+1]
+  U --> V{i <= N?}
+  V -->|Yes| S
+  V -->|No| W[Apply small-hole reverse learning]
+  W --> X[Save best solution]
+  X --> Y{t < T?}
+  Y -->|Yes| Z[t = t+1, i=1]
+  Z --> E
+  Y -->|No| AA[Output best solution]
+  AA --> AB([End])
 ```
 > Lifted from https://www.nature.com/articles/s41598-024-54910-3
