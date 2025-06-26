@@ -47,16 +47,12 @@ sequenceDiagram
 ---
 ``` mermaid
 flowchart TD
-  %% Start node
   Start([Start])
-
-  %% Frontend layer
   subgraph Frontend [Blazor Client]
     A[LoginComponent: User enters username & password]
     B[HttpClient POST /api/auth/login]
   end
 
-  %% Backend layer
   subgraph Backend [ASP.NET Core Web API]
     C[AuthController.Login(LoginDto dto)]
     D[AuthService.ValidateUser(dto)]
@@ -68,22 +64,18 @@ flowchart TD
     L[AuthController returns 200 OK + { token }]
   end
 
-  %% Database layer
   subgraph Database [SQL Server via EF Core]
     M[(Users Table)]
   end
 
-  %% Frontend post-response
-  subgraph FrontendPost [Blazor Client continued]
+  subgraph FrontendPost [Blazor Client cont.]
     I[On success: Store JWT/token in local storage]
     J[Navigate to protected page]
     X[Display "Invalid credentials" message]
   end
 
-  %% End node
   End([End])
 
-  %% Flows
   Start --> A
   A --> B
 
@@ -102,8 +94,6 @@ flowchart TD
   L --> I
   I --> J
   J --> End
-
-  %% Data access link
   F --> M
 ```
 
