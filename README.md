@@ -1,11 +1,11 @@
 # Mermaid Diagram Example
-
-This repository constitutes  a single README file to practice Mermaid.js diagram syntax.
+This repository constitutes a single README file to practice Mermaid.js diagram syntax.
 
 ### Sequence Diagram
 ---
-A ***simple sequence*** diagram of a Log-in use case.
+A ***simple sequence diagram*** of a Log-in use case.
 ```mermaid
+%% Sequence Diagram: Log-in Use Case
 sequenceDiagram
     actor User
     participant UI as Login Page
@@ -43,7 +43,8 @@ sequenceDiagram
 ### Entity Relational Diagram
 ---
 An ***ERD*** of 3 entities (User, Course, and Enrollment)
-``` mermaid
+```mermaid
+%% ERD: User, Course, Enrollment
 erDiagram
     USER ||--o{ ENROLLMENT: "has"
     USER ||--o{ COURSE: "teaches"
@@ -75,4 +76,51 @@ erDiagram
         datetime enrolled_at
         string status "active/completed/dropped"
     }
+```
+
+> A complex system would require more entities such as payment, quiz, category, module, progress, etc.
+
+### Back-end Directory Structure of a Simplified Udemy-based Web Application (Vertical Slice Architecture)
+
+```text
+# Directory Structure: Udemy-based Web Application (Blazor, .NET Core, Mediatr)
+
+src/
+├── Features/                      
+│   ├── UserManagement/
+│   │   ├── Account/              
+│   │   │   └── Account.cs
+│   │   ├── Login/
+│   │   │   └── Login.cs
+│   │   ├── SwitchRole/
+│   │   │   └── SwitchRole.cs
+│   ├── CourseManagement/
+│   │   └── Course.cs
+│   ├── Enrollment/
+│   │   └── Enroll.cs
+│   ├── CompleteCourse/
+│   │   └── CompleteCourse.cs
+│   ├── Payments/
+│   │   ├── Checkout/
+│   │   │   └── Checkout.cs
+│   │   └── Webhooks/
+│   │       └── StripeWebhook.cs
+├── Infrastructure/                
+│   ├── Persistence/
+│   │   ├── ApplicationDbContext.cs
+│   │   └── Migrations/
+│   ├── Email/
+│   └── FileStorage/
+├── Domain/                        
+│   ├── Users/
+│   │   ├── User.cs
+│   │   └── Role.cs
+│   ├── Courses/
+│   │   ├── Course.cs
+│   │   └── Module.cs
+│   └── Shared/
+│       └── ValueObjects/
+├── appsettings.json
+├── Program.cs
+└── ../../udemy-app                 
 ```
