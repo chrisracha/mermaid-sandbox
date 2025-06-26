@@ -211,6 +211,8 @@ flowchart TD
   P -->|No| Q[Set i=1]
 
   Q --> R
+  R --> S
+  S --> T
   T --> U[i = i+1]
   U --> V{i <= N?}
   V -->|Yes| S
